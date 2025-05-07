@@ -50,84 +50,113 @@ const quotes = [
         category: "inspiration"
     }
 ];
-const quoteText=document.getElementById('quoteText');
-const quoteAuthor=document.getElementById('quoteAuthor');
-const quoteCategory=document.getElementById('quoteCategory');
-const prevBtn=document.getElementsById('prevBtn');
-const nextBtn=document.getElementById('nextBtn');
-const randomBtn=document.getElementById('randomBtn');
-const categorySelect=document.getElementById('category');
-const themeToggle=document.getElementById('themeToggle');
-const increaseFontBtn=document.getElementById('increaseFont');
-const decreaseFontBtn=document.getElementById('decreaseFont');
-const copyBtn=document.getElementById('copyBtn');
-const shareBtn=document.getElementById('shareBtn');
-const favoriteBtn=document.getElementById('favorites-container');
-const favoriteList=document.getElementById('favorites-list');
 
-let currentIndex=0;
-let currentCategory='all';
-let filteredQuotes=[...quotes];
-let baseFontSize=24;
+// DOM elements
+const quoteText = document.getElementById('quoteText');
+const quoteAuthor = document.getElementById('quoteAuthor');
+const quoteCategory = document.getElementById('quoteCategory');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const randomBtn = document.getElementById('randomBtn');
+const categorySelect = document.getElementById('category');
+const themeToggle = document.getElementById('themeToggle');
+const increaseFontBtn = document.getElementById('increaseFont');
+const decreaseFontBtn = document.getElementById('decreaseFont');
 
-function init(){
+let currentIndex = 0;
+let currentCategory = 'all';
+let filteredQuotes = [...quotes];
+let baseFontSize = 24;
+
+function init() {
     displayQuote(currentIndex);
-    setupEvenListners();
+    setupEventListeners();
     checkThemePreference();
-
 }
 
-function displayQuote(index)
-{
-    if(filteredQuotes.length===0)
-    {
-        quoteText.textContent="No quotes available in this category";
-        quoteAuthor.textContent="";
-        quoteCategory.textContent="";
+function displayQuote(index) {
+    if (filteredQuotes.length === 0) {
+        quoteText.textContent = "No quotes available in this category.";
+        quoteAuthor.textContent = "";
+        quoteCategory.textContent = "";
         return;
-
     }
-    if(index>=filteredQuotes.length)
-    {
-        index=0;
+    
+    if (index >= filteredQuotes.length) {
+        index = 0;
+    } else if (index < 0) {
+        index = filteredQuotes.length - 1;
     }
-    else if(index<0)
-    {
-        index=filteredQuotes.length-1;
-    }
-    currentIndex=index;
-    const quote=filteredQuotes[currentIndex];
-
-    quoteText.textContent=quote.text;
-    quoteAuthor.textContent='-${quote.author}';
-    quoteCategory.textContent=quote.category;
-
-    quoteText.style.fontSize='${baseFontSize}px';
+    
+    currentIndex = index;
+    const quote = filteredQuotes[currentIndex];
+    
+    quoteText.textContent = quote.text;
+    quoteAuthor.textContent = `— ${quote.author}`;
+    quoteCategory.textContent = quote.category;
+    
+    quoteText.style.fontSize = `${baseFontSize}px`;
 }
 
-function filteredQuotes(category){
-    currentCategory=category;
-    if(category==='all')
-    {
-        filteredQuotes=[...quotes];
-
+function filterQuotes(category) {
+    currentCategory = category;
+    if (category === 'all') {
+        filteredQuotes = [...quotes];
+    } else {
+        filteredQuotes = quotes.filter(quote => quote.category === category);
     }
-    else{
-        filteredQuotes=quotes.filter(quote=>quote.category===category);
-    }
-    currentIndex=0;
+    
+    currentIndex = 0;
     displayQuote(currentIndex);
 }
 
-function setupEvenListners(){
-    prevBtn.addEverntListener('click',()=>
-    {
+function setupEventListeners() {
+    prevBtn.addEventListener('click', () => {
         currentIndex--;
         displayQuote(currentIndex);
     });
-    nextBtn.addEventListener('click',()=>{
+    
+    nextBtn.addEventListener('click', () => {
         currentIndex++;
         displayQuote(currentIndex);
     });
     
+    randomBtn.addEventListener('click', () => {
+        const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
+        currentIndex = randomIndex;
+        displayQuote(currentIndex);
+    });
+    
+    categorySelect.addEventListener('change', (e) => {
+        filterQuotes(e.target.value);
+    });
+    
+    themeToggle.addEventListener('change', toggleTheme);
+    
+    increaseFontBtn.addEventListener('click', () => {
+        baseFontSize += 2;
+        if (baseFontSize > 100) baseFontSize = 100;
+        quoteText.style.fontSize = `${baseFontSize}px`;
+    });
+    
+    decreaseFontBtn.addEventListener('click', () => {
+        baseFontSize -= 2;
+        if (baseFontSize < 16) baseFontSize = 16;
+        quoteText.style.fontSize = `${baseFontSize}px`;
+    });
 }
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', themeToggle.checked);
+}
+
+function checkThemePreference() {
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+        themeToggle.checked = true;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', init);
