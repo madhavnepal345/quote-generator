@@ -1,14 +1,40 @@
-# quote-generator
+# Quote Generator 
 
-It is a simple, responsive quote generator application built in HTML,CSS and javascript. The features include of this system are:
+A responsive quote generator application built with vanilla HTML, CSS, and JavaScript, featuring multiple categories including programming quotes.
 
-1. category filtering: Browse quotes by category(inspiration,Science,Wisdom)
-2. Navigation Controls: Previous/Next Buttons for sequential browsing and random buttom for suprise quotes
-3. Customizable Display: Toggle between dark and light mode and adjustable font size
-4. Mobile Friendly: Responsive design works on all device and sizes
-5. No Dependencies: Pure vanilla javascript with no external libraries are used
+## Features
 
-# Techonologies Used
-1. HTML
-2. CSS
-3. Javascript
+### Core Functionality
+- **Multiple Quote Categories**:
+  - Inspiration
+  - Science
+  - Wisdom
+  - Programming
+  - All quotes (default view)
+
+### Navigation Controls
+- **Sequential Browsing**: Previous/Next buttons
+- **Random Quotes**: Get random quotes from selected category
+- **Category Filtering**: Dropdown menu to filter by category
+
+### Display Customization
+- **Dark/Light Mode Toggle**: With persistent preference
+- **Adjustable Font Size**: A+/A- buttons (16px to 100px range)
+- **Responsive Design**: Works on mobile and desktop
+
+## Technologies Used
+- HTML5
+- CSS3 
+- JavaScript 
+
+## How to Use
+
+1. **Browse Quotes**:
+   - Click previou and Next buttons to navigate sequentially
+   - Click "Random" for a surprise quote
+   - Select a category from the dropdown
+
+2. **Customize Your Experience**:
+   - Toggle dark/light mode with the switch
+   - Adjust font size with A+/A- buttons
+
