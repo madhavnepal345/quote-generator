@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quote Generator</title>
-    <link rel="stylesheet"href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -24,35 +24,33 @@
                 </div>
             </div>
         </header>
+
         <div class="category-selector">
             <label for="category">Select Category:</label>
-            <select  id="category">
+            <select id="category">
                 <option value="all">All Quotes</option>
                 <option value="inspiration">Inspiration</option>
                 <option value="science">Science</option>
                 <option value="wisdom">Wisdom</option>
+                <option value="programming">Programming</option>
+
             </select>
         </div>
+
         <div class="quote-container">
-            <div class="quote-text" id="quotetext"></div>
-            <div class="quote-author" id="quoteauthor"></div>
-            <div class="quote-category" id="quotecategory"></div>
-        </div>
-        <div class="naviagtion">
-            <button id="prevBtn">Previous</button>
-            <button id="randBtn">Random</button>
-            <button id="nextBtn">Next</button>
+            <div class="quote-text" id="quoteText"></div>
+            <div class="quote-author" id="quoteAuthor"></div>
+            <div class="quote-category" id="quoteCategory"></div>
         </div>
 
-        <div class="utility-buttons">
-            <button id="copyBtn">Copy Quote</button>
-            <button id="shareBtn">Share</button>
-            <button id="favoriteBtn">Favorite</button>
+        <div class="navigation">
+            <button id="prevBtn">Previous</button>
+            <button id="randomBtn">Random</button>
+            <button id="nextBtn">Next</button>
         </div>
         
     </div>
 
     <script src="script.js"></script>
-    
 </body>
 </html>
