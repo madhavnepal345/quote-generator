@@ -1,5 +1,12 @@
 const quotes = [
     {
+        text:"Code is like humor. When you have to explain it, it’s bad.",
+        author:"Cory House",
+        category:"programming"
+
+    },
+
+    {
         text: "The only way to do great work is to love what you do.",
         author: "Steve Jobs",
         category: "inspiration"
@@ -51,7 +58,7 @@ const quotes = [
     }
 ];
 
-// DOM elements
+
 const quoteText = document.getElementById('quoteText');
 const quoteAuthor = document.getElementById('quoteAuthor');
 const quoteCategory = document.getElementById('quoteCategory');
